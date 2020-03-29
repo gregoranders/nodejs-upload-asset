@@ -17,6 +17,25 @@ const uploadAsset = async (client: GitHub, params: ReposUploadReleaseAssetParams
   return response.data.value;
 };
 
+
+const prepareHeaders = (fullPathChecked: string, mime: string) => {
+  return {
+    "content-length": fs.statSync(fullPathChecked).size,
+    "content-type": mime || getType(fullPathChecked.toString()) || "application/zip",
+  };
+};
+
+const prepareParams = (data: Buffer, headers: { "content-length": number; "content-type": string; },
+  label: string, name: string, url: string): Octokit.Octokit.ReposUploadReleaseAssetParams => {
+  return {
+    data,
+    headers,
+    label,
+    name,
+    url,
+  };
+};
+
 export const run = async () => {
   const path = core.getInput("path", { required: true });
 
@@ -32,21 +51,10 @@ export const run = async () => {
 
     const github = new GitHub(process.env.GITHUB_TOKEN);
     const fullPathChecked: fs.PathLike = resolve(fs.realpathSync(path));
-
-    const headers = {
-      "content-length": fs.statSync(fullPathChecked).size,
-      "content-type": mime || getType(fullPathChecked.toString()) || "application/zip",
-    };
-
+    const headers = prepareHeaders(fullPathChecked, mime);
     const data = fs.readFileSync(fullPathChecked);
 
-    const asset = await uploadAsset(github, {
-      data,
-      headers,
-      label,
-      name,
-      url,
-    });
+    const asset = await uploadAsset(github, prepareParams(data, headers, label, name, url));
 
     core.setOutput("id", asset.id.toString());
     core.setOutput("url", asset.browser_download_url);
@@ -54,3 +62,4 @@ export const run = async () => {
     core.setFailed(error);
   }
 };
+
