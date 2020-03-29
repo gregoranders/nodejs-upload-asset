@@ -1,0 +1,27 @@
+name: 'NodeJS Upload Asset'
+description: 'Upload asset'
+author: 'Gregor Anders <gregor.ander@gmail.com>'
+inputs:
+  url:
+    description: 'Release Asset Upload Url'
+    required: true
+  path:
+    description: 'Release Asset Path'
+    required: true
+  label:
+    description: 'Release Asset Label'
+    required: false
+  name:
+    description: 'Release Asset File Name'
+    required: false
+outputs:
+  id:
+    description: 'Asset Id'
+  url:
+    description: 'Asset Download Url'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'package'
+  color: 'red'
