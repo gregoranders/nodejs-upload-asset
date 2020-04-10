@@ -24,10 +24,10 @@ This action uploads an asset to a release, so your workflow can access it.
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.3
+      uses: gregoranders/nodejs-project-info@v0.0.4
     - name: create release
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.3
+      uses: gregoranders/nodejs-create-release@v0.0.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -36,7 +36,7 @@ This action uploads an asset to a release, so your workflow can access it.
         target: ${{ github.ref }}
     - name: upload asset
       id: uploadasset
-      uses: gregoranders/nodejs-upload-asset@v0.0.1
+      uses: gregoranders/nodejs-upload-asset@v0.0.4
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
