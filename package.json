@@ -1,6 +1,6 @@
 {
   "name": "nodejs-upload-asset",
-  "version": "0.0.5",
+  "version": "0.0.4",
   "description": "NodeJS Upload Asset",
   "main": "./dist/index.js",
   "scripts": {
