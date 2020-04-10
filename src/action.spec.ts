@@ -38,10 +38,8 @@ describe("nodejs-upload-asset", () => {
     process.env.GITHUB_TOKEN = "abcd";
     uploadReleaseAssetMock.mockReturnValue({
       data: {
-        value: {
-          browser_download_url: "download_url",
-          id: 1,
-        }
+        browser_download_url: "download_url",
+        id: 1,
       },
     });
     return testSubject().then(() => {
@@ -62,10 +60,8 @@ describe("nodejs-upload-asset", () => {
     process.env.GITHUB_TOKEN = "abcd";
     uploadReleaseAssetMock.mockReturnValue({
       data: {
-        value: {
-          browser_download_url: "download_url",
-          id: 1,
-        }
+        browser_download_url: "download_url",
+        id: 1,
       },
     });
     return testSubject().then(() => {
