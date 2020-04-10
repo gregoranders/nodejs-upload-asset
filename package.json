@@ -61,7 +61,6 @@
     "@actions/github": "2.1.1"
   },
   "devDependencies": {
-    "@octokit/rest": "17.2.0",
     "@types/jest": "25.2.1",
     "@types/mime": "2.0.1",
     "@zeit/ncc": "0.22.1",

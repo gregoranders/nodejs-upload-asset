@@ -5,18 +5,18 @@ import * as fs from "fs";
 import { getType } from "mime";
 import { basename, resolve } from "path";
 
-import Octokit from "@actions/github/node_modules/@octokit/rest";
+import { Octokit } from "@octokit/rest";
 
-type ReposUploadReleaseAssetParams = Octokit.Octokit.ReposUploadReleaseAssetParams;
+type ReposUploadReleaseAssetParams = Octokit.ReposUploadReleaseAssetParams;
 
 const uploadAsset = async (client: GitHub, params: ReposUploadReleaseAssetParams) => {
-  core.startGroup(`Uploading asset ${params.label} to release ${params.url}`);
-  const response = await client.repos.uploadReleaseAsset(params);
-  core.info(`Release asset ${response.data.value.name} created [id: ${response.data.value.id}]`);
+  core.startGroup(`Uploading asset ${params.name} to release ${params.url}`);
+  // tslint:disable-next-line: no-any
+  const response = await client.repos.uploadReleaseAsset(params) as any;
+  core.info(`Release asset ${response.data.name} created [id: ${response.data.id}]`);
   core.endGroup();
-  return response.data.value;
+  return response.data;
 };
-
 
 const prepareHeaders = (fullPathChecked: string, mime: string) => {
   return {
@@ -26,7 +26,7 @@ const prepareHeaders = (fullPathChecked: string, mime: string) => {
 };
 
 const prepareParams = (data: Buffer, headers: { "content-length": number; "content-type": string; },
-  label: string, name: string, url: string): Octokit.Octokit.ReposUploadReleaseAssetParams => {
+  label: string, name: string, url: string): Octokit.ReposUploadReleaseAssetParams => {
   return {
     data,
     headers,
