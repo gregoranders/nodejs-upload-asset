@@ -2,8 +2,8 @@ name: 'NodeJS Upload Asset'
 description: 'Upload asset'
 author: 'Gregor Anders <gregor.ander@gmail.com>'
 inputs:
-  url:
-    description: 'Release Asset Upload Url'
+  id:
+    description: 'Release ID'
     required: true
   path:
     description: 'Release Asset Path'
