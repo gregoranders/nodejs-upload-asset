@@ -11,4 +11,4 @@
 
 ## Reporting a Vulnerability
 
-[Create Issue](https://github.com/gregoranders/nodejs-project-info/issues/new?labels=bug&template=bug_report.md&title=Security+Issue)
+[Create Issue](https://github.com/gregoranders/nodejs-upload-asset/issues/new?labels=bug&template=bug_report.md&title=Security+Issue)
