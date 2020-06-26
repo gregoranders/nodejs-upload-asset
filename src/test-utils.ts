@@ -25,7 +25,7 @@ const actionsCoreMock = jest.mock('@actions/core', () => {
         options.required &&
         !Object.keys(process.env).find((key) => `INPUT_${name.toUpperCase()}` === key)
       ) {
-        throw Error(`Input required and not supplied: ${name}`);
+        throw new Error(`Input required and not supplied: ${name}`);
       }
       return process.env[`INPUT_${name.toUpperCase()}`];
     },
@@ -74,19 +74,19 @@ export const clearTestEnvironment = () => {
 };
 
 expect.extend({
-  // tslint:disable-next-line: object-literal-shorthand space-before-function-paren
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   toHaveBeenCalledNthWith: function (recieved: jest.Mock, times: number, match: any) {
-    const passTimes = recieved.mock.calls.length && recieved.mock.calls.length === times ? true : false;
+    const passTimes = recieved.mock.calls.length > 0 && recieved.mock.calls.length === times ? true : false;
     const options = {
       comment: 'Error.message equality',
       isNot: this.isNot,
       promise: this.promise,
     };
-    const callParams = recieved.mock.calls[0][0];
+    const callParameters = recieved.mock.calls[0][0];
     const expectedKeys = Object.keys(match);
     const matchData = Object.create({});
     expectedKeys.forEach((key) => {
-      matchData[key] = callParams[key];
+      matchData[key] = callParameters[key];
     });
     const passDiff = expectedKeys.find((key) => {
       if (matchData[key] !== match[key]) {
@@ -124,9 +124,9 @@ expect.extend({
       pass,
     };
   },
-  toHaveCoreError(recieved: jest.Mock, msg: RegExp) {
-    const error = setFailedMock.mock.calls.length ? (setFailedMock.mock.calls[0][0] as Error) : undefined;
-    const pass = error && error.message.match(msg) ? true : false;
+  toHaveCoreError(recieved: jest.Mock, message: RegExp) {
+    const error = setFailedMock.mock.calls.length > 0 ? (setFailedMock.mock.calls[0][0] as Error) : undefined;
+    const pass = error && error.message.match(message) ? true : false;
     const options = {
       comment: 'Error.message equality',
       isNot: this.isNot,
@@ -136,12 +136,12 @@ expect.extend({
     return {
       message: () => {
         if (pass) {
-          return this.utils.matcherHint('toHaveCoreError', error?.message, `${msg}`, options);
+          return this.utils.matcherHint('toHaveCoreError', error?.message, `${message}`, options);
         } else {
-          const diff = this.utils.diff(msg, error?.message, {
+          const diff = this.utils.diff(message, error?.message, {
             expand: this.expand,
           });
-          return this.utils.matcherHint('toHaveCoreError', error?.message, `${msg}`, options) + `\n\n${diff}`;
+          return this.utils.matcherHint('toHaveCoreError', error?.message, `${message}`, options) + `\n\n${diff}`;
         }
       },
       pass,
