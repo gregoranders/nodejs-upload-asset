@@ -1,6 +1,6 @@
 import * as core from '@actions/core';
 import { context, getOctokit } from '@actions/github';
-import { RestEndpointMethodTypes } from '@octokit/plugin-rest-endpoint-methods/dist-types/';
+import { RestEndpointMethodTypes } from '@octokit/plugin-rest-endpoint-methods/dist-types';
 
 import * as fs from 'fs';
 import { getType } from 'mime';
@@ -9,9 +9,9 @@ import { basename, resolve } from 'path';
 type GitHub = ReturnType<typeof getOctokit>;
 type ReposUploadReleaseAssetParams = RestEndpointMethodTypes['repos']['uploadReleaseAsset']['parameters'];
 
-const uploadAsset = async (client: GitHub, params: ReposUploadReleaseAssetParams) => {
-  core.startGroup(`Uploading asset ${params.name} to release ${params.url}`);
-  const response = await client.repos.uploadReleaseAsset(params);
+const uploadAsset = async (client: GitHub, parameters: ReposUploadReleaseAssetParams) => {
+  core.startGroup(`Uploading asset ${parameters.name} to release ${parameters.url}`);
+  const response = await client.repos.uploadReleaseAsset(parameters);
   core.info(`Release asset ${response.data.name} created [id: ${response.data.id}]`);
   core.endGroup();
   return response.data;
@@ -24,7 +24,7 @@ const prepareHeaders = (fullPathChecked: string, mime: string) => {
   };
 };
 
-const prepareParams = (
+const prepareParameters = (
   data: string,
   headers: { 'content-length': number; 'content-type': string },
   label: string,
@@ -38,7 +38,7 @@ const prepareParams = (
     headers,
     label,
     name,
-    release_id: parseInt(release_id),
+    release_id: Number.parseInt(release_id),
     owner,
     repo,
   };
@@ -54,7 +54,7 @@ export const run = async (): Promise<void> => {
 
   try {
     if (!process.env.GITHUB_TOKEN) {
-      throw Error('Missing GITHUB_TOKEN');
+      throw new Error('Missing GITHUB_TOKEN');
     }
 
     const github = getOctokit(process.env.GITHUB_TOKEN);
@@ -64,7 +64,7 @@ export const run = async (): Promise<void> => {
 
     const asset = await uploadAsset(
       github,
-      prepareParams(data, headers, label, name, id, context.repo.owner, context.repo.repo),
+      prepareParameters(data, headers, label, name, id, context.repo.owner, context.repo.repo),
     );
 
     core.setOutput('id', asset.id.toString());

@@ -1,4 +1,4 @@
-import { clearTestEnvironment, uploadReleaseAssetMock, setInput, setOutputMock } from './testUtils';
+import { clearTestEnvironment, setInput, setOutputMock, uploadReleaseAssetMock } from './test-utils';
 
 import { run as testSubject } from './action';
 
@@ -10,12 +10,12 @@ describe('nodejs-upload-asset', () => {
 
   it('no id provided', async () => {
     setInput('path', 'bar');
-    return expect(testSubject()).rejects.toStrictEqual(Error('Input required and not supplied: id'));
+    return expect(testSubject()).rejects.toStrictEqual(new Error('Input required and not supplied: id'));
   });
 
   it('no path provided', async () => {
     setInput('id', '1');
-    return expect(testSubject()).rejects.toStrictEqual(Error('Input required and not supplied: path'));
+    return expect(testSubject()).rejects.toStrictEqual(new Error('Input required and not supplied: path'));
   });
 
   it('missing GITHUB_TOKEN', async () => {
