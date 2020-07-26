@@ -37,7 +37,7 @@ This action uploads an asset to a release, so your workflow can access it.
         target: ${{ github.ref }}
     - name: upload asset
       id: uploadasset
-      uses: gregoranders/nodejs-upload-asset@v0.0.9
+      uses: gregoranders/nodejs-upload-asset@v0.0.10
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:

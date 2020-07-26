@@ -22,3 +22,4 @@ exclude_patterns:
   - '**/test'
   - '**/docs'
   - '**/node_modules/'
+  - '**/src/*.spec.ts'
