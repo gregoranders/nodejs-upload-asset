@@ -1,4 +1,4 @@
-import { clearTestEnvironment, setInput, setOutputMock, uploadReleaseAssetMock } from './test-utils';
+import { clearTestEnvironment, setInput, setOutputMock, uploadReleaseAssetMock } from './fixtures/test-utils';
 
 import { run as testSubject } from './action';
 

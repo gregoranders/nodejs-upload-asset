@@ -10,13 +10,14 @@ This action uploads an asset to a release, so your workflow can access it.
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Master Build][master-build-image]][master-url] [![Master Coverage][master-coveralls-image]][master-coveralls-url] [![Master Version][master-version-image]][master-version-url]
+[![Codacy Badge][codacy-imge]][codacy-url][![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
 
-[![Development Build][development-build-image]][development-url] [![Development Coverage][development-coveralls-image]][development-coveralls-url] [![Development Version][development-version-image]][development-version-url]
+[![Main Language][language-image]][code-metric-url] [![Languages][languages-image]][code-metric-url] [![Code Size][code-size-image]][code-metric-url] [![Repo-Size][repo-size-image]][code-metric-url]
 
-[![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
-
-[![Main Language](https://img.shields.io/github/languages/top/gregoranders/nodejs-upload-asset)][code-metric-url] [![Languages](https://img.shields.io/github/languages/count/gregoranders/nodejs-upload-asset)][code-metric-url] [![Code Size](https://img.shields.io/github/languages/code-size/gregoranders/nodejs-upload-asset)][code-metric-url] [![Repo-Size](https://img.shields.io/github/repo-size/gregoranders/nodejs-upload-asset)][code-metric-url]
+|                                                                  |                                                                            | [![Release][release-image]][release-url]                                     |
+| ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
+| [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
 
 ## Usage
 
@@ -24,10 +25,10 @@ This action uploads an asset to a release, so your workflow can access it.
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.7
+      uses: gregoranders/nodejs-project-info@v0.0.10
     - name: create release
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.7
+      uses: gregoranders/nodejs-create-release@v0.0.10
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -36,7 +37,7 @@ This action uploads an asset to a release, so your workflow can access it.
         target: ${{ github.ref }}
     - name: upload asset
       id: uploadasset
-      uses: gregoranders/nodejs-upload-asset@v0.0.7
+      uses: gregoranders/nodejs-upload-asset@v0.0.10
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -71,46 +72,6 @@ outputs:
     description: 'Release Url'
 ```
 
-## Development
-
-### Clone repository
-
-```SH
-git clone https://github.com/gregoranders/nodejs-upload-asset
-```
-
-### Install dependencies
-
-```SH
-npm install
-```
-
-### Build
-
-```SH
-npm run build
-```
-
-### Testing
-
-#### Test using [Jest](https://jestjs.io/)
-
-```SH
-npm test
-```
-
-### Run
-
-```SH
-npm start
-```
-
-### Clear
-
-```SH
-npm run clear
-```
-
 [release-url]: https://github.com/gregoranders/nodejs-upload-asset/releases
 [master-url]: https://github.com/gregoranders/nodejs-upload-asset/tree/master
 [development-url]: https://github.com/gregoranders/nodejs-upload-asset/tree/development
@@ -128,6 +89,8 @@ npm run clear
 [development-version-image]: https://img.shields.io/github/package-json/v/gregoranders/nodejs-upload-asset/development
 [issues-url]: https://github.com/gregoranders/nodejs-upload-asset/issues
 [issues-image]: https://img.shields.io/github/issues-raw/gregoranders/nodejs-upload-asset.svg
+[release-image]: https://img.shields.io/github/release/gregoranders/nodejs-upload-asset
+[release-build-image]: https://github.com/gregoranders/nodejs-upload-asset/workflows/Release%20CI/badge.svg
 [master-build-image]: https://github.com/gregoranders/nodejs-upload-asset/workflows/Master%20CI/badge.svg
 [development-build-image]: https://github.com/gregoranders/nodejs-upload-asset/workflows/Development%20CI/badge.svg
 [master-coveralls-url]: https://coveralls.io/github/gregoranders/nodejs-upload-asset?branch=master
@@ -140,3 +103,9 @@ npm run clear
 [code-issues-image]: https://img.shields.io/codeclimate/issues/gregoranders/nodejs-upload-asset
 [code-tech-debt-url]: https://codeclimate.com/github/gregoranders/nodejs-upload-asset/maintainability
 [code-tech-debt-image]: https://img.shields.io/codeclimate/tech-debt/gregoranders/nodejs-upload-asset
+[language-image]: https://img.shields.io/github/languages/top/gregoranders/nodejs-upload-asset
+[languages-image]: https://img.shields.io/github/languages/count/gregoranders/nodejs-upload-asset
+[code-size-image]: https://img.shields.io/github/languages/code-size/gregoranders/nodejs-upload-asset
+[repo-size-image]: https://img.shields.io/github/repo-size/gregoranders/nodejs-upload-asset
+[codacy-imge]: https://app.codacy.com/project/badge/Grade/ade2dc1495e942019cda4408f84ef8db
+[codacy-url]: https://www.codacy.com/manual/gregoranders/nodejs-upload-asset
