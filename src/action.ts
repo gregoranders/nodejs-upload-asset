@@ -2,16 +2,16 @@ import * as core from '@actions/core';
 import { context, getOctokit } from '@actions/github';
 import { RestEndpointMethodTypes } from '@octokit/plugin-rest-endpoint-methods/dist-types';
 
-import * as fs from 'fs';
+import * as fs from 'node:fs';
 import { getType } from 'mime';
-import { basename, resolve } from 'path';
+import { basename, resolve } from 'node:path';
 
 type GitHub = ReturnType<typeof getOctokit>;
-type ReposUploadReleaseAssetParams = RestEndpointMethodTypes['repos']['uploadReleaseAsset']['parameters'];
+type ReposUploadReleaseAssetParameters = RestEndpointMethodTypes['repos']['uploadReleaseAsset']['parameters'];
 
-const uploadAsset = async (client: GitHub, parameters: ReposUploadReleaseAssetParams) => {
+const uploadAsset = async (client: GitHub, parameters: ReposUploadReleaseAssetParameters) => {
   core.startGroup(`Uploading asset ${parameters.name} to release ${parameters.url}`);
-  const response = await client.repos.uploadReleaseAsset(parameters);
+  const response = await client.rest.repos.uploadReleaseAsset(parameters);
   core.info(`Release asset ${response.data.name} created [id: ${response.data.id}]`);
   core.endGroup();
   return response.data;
@@ -69,7 +69,7 @@ export const run = async (): Promise<void> => {
 
     core.setOutput('id', asset.id.toString());
     core.setOutput('url', asset.browser_download_url);
-  } catch (error) {
+  } catch (error: Error | any) {
     core.setFailed(error);
   }
 };

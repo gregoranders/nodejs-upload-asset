@@ -6,7 +6,6 @@ plugins:
     enabled: false
   eslint:
     enabled: true
-    channel: 'eslint-6'
     config:
       config: .eslintrc-cc.json
   fixme:
@@ -23,3 +22,6 @@ exclude_patterns:
   - '**/docs'
   - '**/node_modules/'
   - '**/src/*.spec.ts'
+  - '**/fixtures'
+  - '**/.husky'
+  - '**/commitlint.config.js'
