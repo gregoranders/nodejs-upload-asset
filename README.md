@@ -2,11 +2,10 @@
 
 ## [GitHub Action](https://github.com/features/actions) written in [TypeScript](http://www.typescriptlang.org/)
 
-### Upload asset to release - [GitHub Action](https://github.com/features/actions).
+### Upload asset to release - [GitHub Action](https://github.com/features/actions)
 
 This action uploads an asset to a release, so your workflow can access it.
 
-[![Dependency Status][daviddm-image]][daviddm-url]
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
@@ -25,10 +24,10 @@ This action uploads an asset to a release, so your workflow can access it.
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.11
+      uses: gregoranders/nodejs-project-info@v0.0.13
     - name: create release
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.11
+      uses: gregoranders/nodejs-create-release@v0.0.13
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -37,7 +36,7 @@ This action uploads an asset to a release, so your workflow can access it.
         target: ${{ github.ref }}
     - name: upload asset
       id: uploadasset
-      uses: gregoranders/nodejs-upload-asset@v0.0.11
+      uses: gregoranders/nodejs-upload-asset@v0.0.13
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -47,7 +46,7 @@ This action uploads an asset to a release, so your workflow can access it.
     ...
 ```
 
-#### Inputs/Outputs
+### Inputs/Outputs
 
 ```YML
 inputs:
@@ -79,8 +78,6 @@ outputs:
 [code-metric-url]: https://github.com/gregoranders/nodejs-upload-asset/search?l=TypeScript
 [travis-url]: https://travis-ci.org/gregoranders/nodejs-upload-asset
 [travis-image]: https://travis-ci.org/gregoranders/nodejs-upload-asset.svg?branch=master
-[daviddm-url]: https://david-dm.org/gregoranders/nodejs-upload-asset
-[daviddm-image]: https://david-dm.org/gregoranders/nodejs-upload-asset.svg?branch=master
 [license-url]: https://github.com/gregoranders/nodejs-upload-asset/blob/master/LICENSE
 [license-image]: https://img.shields.io/github/license/gregoranders/nodejs-upload-asset.svg
 [master-version-url]: https://github.com/gregoranders/nodejs-upload-asset/blob/master/package.json
