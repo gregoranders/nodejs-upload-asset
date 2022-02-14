@@ -106,7 +106,7 @@
     "jest-html-reporter": "3.4.2",
     "jest-junit": "13.0.0",
     "jest-spec-reporter": "1.0.17",
-    "lint-staged": "12.3.3",
+    "lint-staged": "12.3.4",
     "mime": "3.0.0",
     "prettier": "2.5.1",
     "rimraf": "3.0.2",
