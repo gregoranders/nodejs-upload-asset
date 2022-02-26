@@ -1,33 +1,47 @@
-# NodeJS Upload Asset
+# Node.JS Upload Asset
 
-## [GitHub Action](https://github.com/features/actions) written in [TypeScript](http://www.typescriptlang.org/)
+## [GitHub Action][github-actions-url] written in [TypeScript][typescript-url]
 
-### Upload asset to release - [GitHub Action](https://github.com/features/actions)
+### Upload asset to release - [GitHub Action][github-actions-url]
 
 This action uploads an asset to a release, so your workflow can access it.
 
 [![License][license-image]][license-url]
 [![Issues][issues-image]][issues-url]
 
-[![Codacy Badge][codacy-imge]][codacy-url][![Code maintainability][code-maintainability-image]][code-maintainability-url] [![Code issues][code-issues-image]][code-issues-url] [![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
+[![Code maintainability][code-maintainability-image]][code-maintainability-url]
+[![Code issues][code-issues-image]][code-issues-url]
+[![Code Technical Debt][code-tech-debt-image]][code-tech-debt-url]
 
-[![Main Language][language-image]][code-metric-url] [![Languages][languages-image]][code-metric-url] [![Code Size][code-size-image]][code-metric-url] [![Repo-Size][repo-size-image]][code-metric-url]
+[![Main Language][language-image]][code-metric-url]
+[![Languages][languages-image]][code-metric-url]
+[![Code Size][code-size-image]][code-metric-url]
+[![Repository Size][repo-size-image]][code-metric-url]
 
-|                                                                  |                                                                            | [![Release][release-image]][release-url]                                     |
+## Features
+
+- [TypeScript][typescript-url]
+- [Jest][jest-url] Unit Tests with Code Coverage
+- GitHub CI Integration (feature, development, master, release)
+- Code Quality via [Code Climate](./docs/codeclimate.md)
+
+<!-- lint disable maximum-line-length -->
+| GitHub                                                           | Coveralls                                                                  |                                                                              |
 | ---------------------------------------------------------------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [![Release Build][release-build-image]][release-url]             |                                                                            | [![Release Version][release-image]][release-url]                             |
 | [![Master Build][master-build-image]][master-url]                | [![Master Coverage][master-coveralls-image]][master-coveralls-url]         | [![Master Version][master-version-image]][master-version-url]                |
 | [![Development Build][development-build-image]][development-url] | [![Test Coverage][development-coveralls-image]][development-coveralls-url] | [![Development Version][development-version-image]][development-version-url] |
-
+<!-- lint enable maximum-line-length -->
 ## Usage
 
 ```YML
     ...
     - name: nodejs project information
       id: projectinfo
-      uses: gregoranders/nodejs-project-info@v0.0.13
+      uses: gregoranders/nodejs-project-info@v0.0.17
     - name: create release
       id: createrelease
-      uses: gregoranders/nodejs-create-release@v0.0.13
+      uses: gregoranders/nodejs-create-release@v0.0.17
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -36,7 +50,7 @@ This action uploads an asset to a release, so your workflow can access it.
         target: ${{ github.ref }}
     - name: upload asset
       id: uploadasset
-      uses: gregoranders/nodejs-upload-asset@v0.0.13
+      uses: gregoranders/nodejs-upload-asset@v0.0.17
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
@@ -74,10 +88,7 @@ outputs:
 [release-url]: https://github.com/gregoranders/nodejs-upload-asset/releases
 [master-url]: https://github.com/gregoranders/nodejs-upload-asset/tree/master
 [development-url]: https://github.com/gregoranders/nodejs-upload-asset/tree/development
-[repository-url]: https://github.com/gregoranders/nodejs-upload-asset
 [code-metric-url]: https://github.com/gregoranders/nodejs-upload-asset/search?l=TypeScript
-[travis-url]: https://travis-ci.org/gregoranders/nodejs-upload-asset
-[travis-image]: https://travis-ci.org/gregoranders/nodejs-upload-asset.svg?branch=master
 [license-url]: https://github.com/gregoranders/nodejs-upload-asset/blob/master/LICENSE
 [license-image]: https://img.shields.io/github/license/gregoranders/nodejs-upload-asset.svg
 [master-version-url]: https://github.com/gregoranders/nodejs-upload-asset/blob/master/package.json
@@ -104,5 +115,6 @@ outputs:
 [languages-image]: https://img.shields.io/github/languages/count/gregoranders/nodejs-upload-asset
 [code-size-image]: https://img.shields.io/github/languages/code-size/gregoranders/nodejs-upload-asset
 [repo-size-image]: https://img.shields.io/github/repo-size/gregoranders/nodejs-upload-asset
-[codacy-imge]: https://app.codacy.com/project/badge/Grade/ade2dc1495e942019cda4408f84ef8db
-[codacy-url]: https://www.codacy.com/manual/gregoranders/nodejs-upload-asset
+[typescript-url]: http://www.typescriptlang.org/
+[jest-url]: https://jestjs.io/
+[github-actions-url]: https://github.com/features/actions
