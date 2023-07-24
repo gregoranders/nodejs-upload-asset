@@ -96,7 +96,7 @@
     "mime": "3.0.0"
   },
   "devDependencies": {
-    "@commitlint/cli": "17.6.3",
+    "@commitlint/cli": "17.6.7",
     "@commitlint/config-conventional": "17.6.3",
     "@types/jest": "29.5.1",
     "@types/mime": "3.0.1",
